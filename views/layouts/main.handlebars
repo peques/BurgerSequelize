@@ -1,0 +1,69 @@
+<!-- THIS IS YOUR MAIN HTML PAGE, THE ONE THE CLIENT SEES -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Krust Krab Online</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/burger_style.css">
+    
+    <script
+          src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous">         
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center" id="top-bar">
+                <img src="./assets/img/krabbypatty.jpg" alt="burger" />
+                <h1> Welcome to the Krusty Krab App! </h1>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center enter_section">
+                        <!-- <form action="/" method="POST"> -->
+                        <input type="text" class="form-control" id="burger_name">
+                        <button type="submit" class="btn btn-primary" id="submit">Add to Menu</button>
+                    <!-- </form> -->
+                        <p>Enter a Krabby Patty you want to eat!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 text-center" class="task">
+                <div class="row">
+                    
+                        {{{body}}}
+                        <br>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+</body>
+
+        <script type="text/javascript">
+        $("#submit").on("click", function() {
+            let burgerName = $('#burger_name').val().trim();
+
+            console.log("working");
+
+            $.post("/", {burger_name: burgerName}, function(res){
+                if (res) {
+                    window.location = res.redirect;     
+                }
+            });
+
+
+        });
+        </script>
+
+</html>
+
+
